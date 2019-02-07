@@ -1,0 +1,25 @@
+services:
+  rusa.client:
+    class: '\Drupal\rusa_api\Client\RusaClient'
+  rusa.results.client:
+    class: '\Drupal\rusa_api\Client\RusaResultsClient'
+  rusa.clubs:
+    class: '\Drupal\rusa_api\RusaClubs'
+  rusa.regions:
+    class: '\Drupal\rusa_api\RusaRegions'
+  rusa.officials:
+    class: '\Drupal\rusa_api\RusaOfficials'
+  rusa.routes:
+    class: '\Drupal\rusa_api\RusaRoutes'
+  rusa.events:
+    class: '\Drupal\rusa_api\RusaEvents'
+  rusa.sates:
+    class: '\Drupal\rusa_api\RusaStates'
+  rusa.countries:
+    class: '\Drupal\rusa_api\RusaCountries'
+  rusa.members:
+    class: '\Drupal\rusa_api\RusaMembers'
+  rusa.perms:
+    class: '\Drupal\rusa_api\RusaPermanents'
+  rusa.results:
+    class: '\Drupal\rusa_api\RusaResults'

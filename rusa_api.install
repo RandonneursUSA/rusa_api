@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * Update to add State terms to existing vocabulary
+ */
+function rusa_api_update_8001(&$sandbox){
+  $states = new \Drupal\rusa_api\RusaStates;
+  $states->buildStates();
+}
