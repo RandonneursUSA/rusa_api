@@ -13,8 +13,8 @@ class RusaClient {
    */
   public function __construct() {
     $this->httpClient = \Drupal::httpClient();
-    $this->get_uri = "http://localhost/cgi-bin/gdbm2json.pl";
-    $this->put_uri = "http://localhost/cgi-bin/post_routes.pl";
+   $this->get_uri = "http://rusa.lieb.home/cgi-bin/gdbm2json.pl";
+    $this->put_uri = "http://rusa.lieb.home/cgi-bin/post_routes.pl";
     //$this->get_uri = "https://linode.rusa.org/cgi-bin/gdbm2json.pl";
     //$this->put_uri = "https://linode.rusa.org//cgi-bin/post_routes.pl";
   }

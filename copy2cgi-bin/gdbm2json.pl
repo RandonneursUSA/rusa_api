@@ -1,5 +1,16 @@
 #!/usr/bin/perl
 
+# ------------------------------------------
+# File: gbdm2json.pl
+# Author: Paul Lieberman
+# Created: May  2017
+# Purpose: Web API to query RUSA
+#
+# Updated:
+#    2018-09-20 - PL - Protect private data
+#               
+# -------------------------------------------
+
 # use strict;
 use GDBM_File;
 use JSON::PP;
@@ -46,6 +57,31 @@ while (my ($key,$val) = each %data) {
   }
 }
 untie  %data;
+
+# Remove non public data
+# ------------------------------
+if ($dbname eq "members") {
+  @stripfields = ('address','city', 'state', 'zip', 'country', 'phone', 'phone2', 'fax', 'email', 'gender', 'birthdate', 'password');
+  for my $record (@data) {
+    for my $field (@stripfields) {
+      ${$record}{$field} = undef;
+    }
+  }
+}
+
+if ($dbname eq "officials") {
+  @stripfields = ('address','city', 'state', 'zip', 'country', 'phone', 'phone2', 'fax', 'email', 'gender', 'birthdate', 'password');
+  for my $record (@data) {
+    for my $field (@stripfields) {
+      ${$record}{$field} = undef;
+    }
+  }
+}
+
+ 
+
+
+
 
 # Print out results
 # ---------------------------------

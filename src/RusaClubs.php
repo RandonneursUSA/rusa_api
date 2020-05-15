@@ -52,6 +52,19 @@ class RusaClubs {
   }
 
   /**
+   * Get all the clubs as simple array
+   *
+   */
+  public function getClubsArray(){
+    $clubs_array = [];
+    foreach ($this->clubs as $acpcode => $club) {
+      $clubs_array[] = $club;
+    }
+    return $clubs_array;
+  }
+
+
+  /**
    * Get a single club
    *
    */

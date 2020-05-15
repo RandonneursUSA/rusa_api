@@ -28,7 +28,7 @@ class RusaStates {
     $this->db_states =  $client->get(['dbname' => 'states']);
   }
 
-  public function getStates($option) {
+  public function getStates() {
     // Build states array
     $states = [];
     foreach ($this->db_states as $state) {
@@ -40,7 +40,7 @@ class RusaStates {
     // 1 = territories
     // 2 = military
     // 3 = provinces
-
+/*
     if ($option > 0) {
       // Add territories
       $states[] = '-- US Territories --';
@@ -58,7 +58,7 @@ class RusaStates {
       $states[] = '-- Canadian Provinces --';
       $states += $this->provinces();
     }
-
+*/
     return $states;
   }
 

@@ -1,8 +1,5 @@
 /* RUSA RBA stylesheet */
 
-/* rusa_rba */
-
-
 .rusa-rba-form {
   font-size: .9rem;
 }
@@ -42,37 +39,12 @@
 
 
 
-/* rusa_clubs */
-
-.rusa-clubs-table .form--inline  .form-item,
-.rusa-form .form--inline  .form-item {
-  float: none;
-}
-
-.rusa-clubs-table .form-item label,
-.rusa-form .form-item label {
-  min-width: 140px;
-  text-align: right;
-}
-
-.rusa-clubs-table table,
-.rusa-clubs-table tr,
-.rusa-clubs-table th,
-.rusa-clubs-table td,
 .rusa-form-table table,
 .rusa-form-table tr,
 .rusa-form-table th,
 .rusa-form-table td{
   border: 1px solid #aaa;
 }
-
-.rusa-clubs-table .form-checkbox,
-.rusa-form .form-checkbox {
-  margin-left: 120px;
-}
-
-
-/* Style */
 
 .rusa-table .form--inline  .form-item {
   float: none;
