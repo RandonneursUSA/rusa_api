@@ -13,10 +13,11 @@ class RusaClient {
    */
   public function __construct() {
     $this->httpClient = \Drupal::httpClient();
-   $this->get_uri = "http://rusa.lieb.home/cgi-bin/gdbm2json.pl";
-    $this->put_uri = "http://rusa.lieb.home/cgi-bin/post_routes.pl";
-    //$this->get_uri = "https://linode.rusa.org/cgi-bin/gdbm2json.pl";
-    //$this->put_uri = "https://linode.rusa.org//cgi-bin/post_routes.pl";
+    // $this->get_uri = "https://rusa.org/cgi-bin/gdbm2json.pl";
+    // $this->put_uri = "https://rusa.org/cgi-bin/post_routes.pl";
+    $this->get_uri = "https://dev.rusa.org/cgi-bin/gdbm2json.pl";
+    $this->put_uri = "https://dev.rusa.org//cgi-bin/post_routes.pl";
+    $this->pay_uri = "https://dev.rusa.org//cgi-bin/perm_pay.pl";
   }
 
   /**
@@ -48,11 +49,24 @@ class RusaClient {
    */
   public function put($data = []) {
     $json = json_encode($data);
-    $request = $this->httpClient->post($this->put_uri , [
+    $request = $this->httpClient->post($this->put_uri, [
       'verify'    => FALSE,
       'json'      => $json,
     ]);
     return json_decode($request->getBody());
-
   }
-}
+
+  /**
+   * Post perm prog payment
+   *
+   */
+  public function perm_pay($data = []) {
+    $json = json_encode($data);
+    $request = $this->httpClient->post($this->pay_uri, [
+      'verify'    => FALSE,
+      'json'      => $json,
+    ]);
+    return json_decode($request->getBody());
+  }
+
+} //End of Class

@@ -23,3 +23,8 @@ services:
     class: '\Drupal\rusa_api\RusaPermanents'
   rusa.results:
     class: '\Drupal\rusa_api\RusaResults'
+
+  rusa_api.route_subscriber:
+    class: Drupal\rusa_api\Routing\RusaRouteSubscriber
+    tags:
+      - { name: event_subscriber }

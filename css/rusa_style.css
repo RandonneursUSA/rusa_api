@@ -1,23 +1,13 @@
 /* RUSA RBA stylesheet */
 
-.rusa-rba-form {
-  font-size: .9rem;
-}
+/* rusa_rba */
+
 
 .rusa-rba-form label {
-  min-width: 220px;
+  min-width: 200px;
   text-align: right;
 }
 
-.rusa-rba-form .chosen-container,
-.rusa-rba-form input {
-  display: inline-block;
-  max-width: 280px;
-}
-
-.rusa-rba-form .button {
-  max-width: 110px;
-}
 
 #edit-event-data,
 #edit-event-data th,
@@ -38,13 +28,36 @@
 }
 
 
+/* rusa_clubs */
 
+.rusa-clubs-table .form--inline  .form-item,
+.rusa-form .form--inline  .form-item {
+  float: none;
+}
+
+.rusa-clubs-table .form-item label,
+.rusa-form .form-item label {
+  min-width: 140px;
+  text-align: right;
+}
+
+.rusa-clubs-table table,
+.rusa-clubs-table tr,
+.rusa-clubs-table th,
+.rusa-clubs-table td,
 .rusa-form-table table,
 .rusa-form-table tr,
 .rusa-form-table th,
 .rusa-form-table td{
   border: 1px solid #aaa;
 }
+
+.rusa-clubs-table .form-checkbox,
+.rusa-form .form-checkbox {
+  margin-left: 120px;
+}
+
+/* Style */
 
 .rusa-table .form--inline  .form-item {
   float: none;
@@ -94,4 +107,5 @@
   min-width: 100px;
   text-align: right;
 }
+
 

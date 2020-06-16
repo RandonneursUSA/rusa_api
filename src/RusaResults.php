@@ -12,6 +12,7 @@
 
 namespace Drupal\rusa_api;
 
+use Drupal\Core\Messenger;
 use Drupal\rusa_api\Client\RusaResultsClient;
 
 /**
@@ -31,7 +32,8 @@ class RusaResults {
       $mid = $params['val'];
     }
     else {
-      drupal_set_message("Cannot get results without a member ID.", 'error');
+      $messenger = \Drupal::messenger();
+      $messenger->addMessage(t("Cannot get results without a RUSA #."), $messenger::TYPE_ERROR);
       return;
     }
 
