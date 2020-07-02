@@ -5,7 +5,7 @@ namespace Drupal\rusa_api;
 use Drupal\Core\Messenger;
 use Drupal\taxonomy\Entity\Term;
 
-class RusaStates {
+class RusaStatesBuild {
 
   public function buildStates() {
     $states = $this->getStates();

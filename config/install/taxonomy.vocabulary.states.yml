@@ -5,5 +5,4 @@ dependencies: {  }
 name: States
 vid: states
 description: 'A list of states'
-hierarchy: 0
 weight: 0

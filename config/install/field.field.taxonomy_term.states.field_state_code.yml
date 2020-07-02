@@ -1,0 +1,23 @@
+uuid: d50317e5-fed6-4527-914a-2c552eea7de3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_state_code
+    - taxonomy.vocabulary.states
+id: taxonomy_term.states.field_state_code
+field_name: field_state_code
+entity_type: taxonomy_term
+bundle: states
+label: 'State Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

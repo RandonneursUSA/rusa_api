@@ -1,9 +1,0 @@
-uuid: ce365ce2-bc8c-4e06-94d3-af6fcd2611f3
-langcode: en
-status: true
-dependencies: {  }
-name: States
-vid: states
-description: 'A list of states'
-hierarchy: 0
-weight: 0
