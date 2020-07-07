@@ -53,7 +53,7 @@ class RusaPermanents {
   public function getActivePermanents(){
     $perms = [];
     foreach ($this->perms as $pid => $perm) {
-      if ($perm->active == '1') {
+      if ($perm->status == '1') {
         $perms[$pid] = $perm;
       }
     }
@@ -131,12 +131,30 @@ class RusaPermanents {
   public function getPermsByOwner($mid) {
     $perms = [];
     foreach ($this->perms as $pid => $perm) {
-      if ($perm->mid == $mid && $perm->status == 1) {
+      if ($perm->mid == $mid && $perm->status == '1') {
         $perms[$pid] = $perm;
       }
     }
     return $perms;
   }
+  
+    /**
+     * Is perm inactive
+     *
+     */
+    public function isInactive($pid){
+        $perm = $this->perms[$pid];
+        return ! ($perm->status === '1');   
+   }
+
+    /**
+     * Is perm an SR
+     *
+     */
+    public function isSr($pid){
+        $perm = $this->perms[$pid];
+        return ($perm->superrand === '1');   
+   }
 
 
 } // End of class
