@@ -75,7 +75,7 @@ class RusaPermanents {
   public function getPermanentsByDistance($dist){
     $results = [];
     foreach ($this->perms as $pid => $perm) {
-      if ($perm->dist >= $dist && $perm->dist <= $dist * 1.2 && $perm->active == '1') {
+      if ($perm->dist >= $dist && $perm->dist <= $dist * 1.2 ) {
         $results[$pid] = $perm;
       }
     }
@@ -155,6 +155,34 @@ class RusaPermanents {
         $perm = $this->perms[$pid];
         return ($perm->superrand === '1');   
    }
+
+
+    /**
+     * Get permanents query
+     *
+     */
+    public function getPermanentsQuery($query) {
+    
+        if ($query['active']) {
+            $this->perms = $this->getActivePermanents();
+        }
+        if ($query['nosr']) {        
+            // Remove SR600s
+            foreach ($this->perms as $pid => $perm) {
+                if ($perm->superrand != '1') {
+                    $perms[$pid] = $perm;
+                }
+            }
+            $this->perms = $perms;
+        }
+        if ($query['dist']) {
+            $this->perms = $this->getPermanentsByDistance($query['dist']);
+        }
+        
+        return $this->getPermanentsSorted();
+    }
+
+
 
 
 } // End of class
