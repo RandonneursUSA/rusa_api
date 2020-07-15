@@ -156,7 +156,40 @@ class RusaPermanents {
         return ($perm->superrand === '1');   
    }
 
+    /**
+     * Get Perms by type
+     *
+     */
+    public function getPermanentsByType($type) {
+        if (in_array($type, ['LOOP', 'OB', 'PP'])) {
+            $perms = [];
+            foreach ($this->perms as $pid => $perm) {
+                if ($perm->type == $type) {
+                    $perms[$pid] = $perm;
+                }
+            }
+            return $perms;
+        }
+    }
 
+
+    /**
+     * Get Perms by name
+     *
+     */
+    public function getPermanentsByName($name) {
+        if (! empty($name)) {
+            $perms = [];
+            foreach ($this->perms as $pid => $perm) {
+                if (stripos($perm->name, $name) !== FALSE) {             
+                    $perms[$pid] = $perm;
+                }
+            }
+            return $perms;
+        }
+    }
+    
+    
     /**
      * Get permanents query
      *
@@ -166,6 +199,7 @@ class RusaPermanents {
         if ($query['active']) {
             $this->perms = $this->getActivePermanents();
         }
+        
         if ($query['nosr']) {        
             // Remove SR600s
             foreach ($this->perms as $pid => $perm) {
@@ -175,10 +209,19 @@ class RusaPermanents {
             }
             $this->perms = $perms;
         }
+        
         if ($query['dist']) {
             $this->perms = $this->getPermanentsByDistance($query['dist']);
         }
         
+        if ($query['type']) {
+            $this->perms = $this->getPermanentsByType($query['type']);
+        }
+        
+        if ($query['name']) {
+            $this->perms = $this->getPermanentsByName($query['name']);
+        }
+     
         return $this->getPermanentsSorted();
     }
 
