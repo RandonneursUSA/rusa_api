@@ -135,15 +135,20 @@
 
 
 /* Red submit buttons */
+.rusa-button,
 .form-submit {
   margin: 0 10px 10px 0;
   border: none;
   padding: 8px 20px;
-  color: #fff;
+  color: #fff !important;
   background: #c01700;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+.rusa-em {
+    font-style: italic;
+    color: #c01700;
 }
 
 
