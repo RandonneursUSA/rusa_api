@@ -10,6 +10,9 @@ class RusaClient {
 
     /**
      * Constructor.
+     *
+     * @To-do : use Hostname to assign URLs
+     *
      */
     public function __construct() {
         $this->httpClient = \Drupal::httpClient();
