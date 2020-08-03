@@ -1,6 +1,6 @@
 {
   "name": "rusa/rusa_api",
-  "type": "drupal-custom-module",
+  "type": "drupal-module",
   "license": "GPL-2.0-or-later",
   "description": "Drupal API module for RUSA"
 }
