@@ -1,6 +1,5 @@
 {
   "name": "rusa/rusa_api",
   "type": "drupal-custom-module",
-  "version": "0.1",
-  "description": "Drupal module for RUSA"
+  "description": "Drupal API module for RUSA"
 }
