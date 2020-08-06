@@ -13,7 +13,7 @@
 namespace Drupal\rusa_api;
 
 use Drupal\Core\Messenger;
-use Drupal\rusa_api\Client\RusaResultsClient;
+use Drupal\rusa_api\Client\RusaClient;
 
 /**
  * Gets Results data from backend
@@ -37,17 +37,8 @@ class RusaResults {
       return;
     }
 
-    $client = new RusaResultsClient();
-    $data   = $client->get($mid);
-
-    // Sort by date
-    foreach ($data as $key => $result) {
-      $results[$key] = $result;
-      $asort[$key] = strtotime($result->date);
-    }
-    array_multisort($asort, SORT_NUMERIC, SORT_DESC,
-                    $results);
-    $this->results = $results;
+    $client = new RusaClient();
+    $this->results   = $client->getResults($mid);
   }
 
 

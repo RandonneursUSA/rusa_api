@@ -10,18 +10,16 @@ class RusaClient {
 
     /**
      * Constructor.
-     *
-     * @To-do : use Hostname to assign URLs
-     *
      */
     public function __construct() {
         $this->httpClient = \Drupal::httpClient();
-        // $this->get_uri = "https://rusa.org/cgi-bin/gdbm2json.pl";
-        // $this->put_uri = "https://rusa.org/cgi-bin/post_routes.pl";
-        $this->get_uri = "https://dev.rusa.org/cgi-bin/gdbm2json.pl";
-        $this->put_uri = "https://dev.rusa.org//cgi-bin/post_routes.pl";
-        $this->results_uri = "https://dev.rusa.org//cgi-bin/resultsubmit4_PF.pl";
-        $this->pay_uri = "https://dev.rusa.org//cgi-bin/perm_pay.pl";
+        $host = \Drupal::request()->getHost();
+
+        $this->get_uri     = 'https://' . $host . '/cgi-bin/gdbm2json.pl';
+        $this->put_uri     = 'https://' . $host . '/cgi-bin/post_routes.pl';
+        $this->results_uri = 'https://' . $host . '/cgi-bin/resultsubmit4_PF.pl';
+        $this->pay_uri     = 'https://' . $host . '/cgi-bin/perm_pay.pl';
+        $this->get_results = 'https://' . $host . '/cgi-bin/results2json.pl';
     }
 
     /**
@@ -60,6 +58,28 @@ class RusaClient {
         return json_decode($request->getBody());
     }
 
+    /**
+     * Get the Resultsfrom the back end
+     *
+     */
+    public function getResults($query = NULL) {
+        if (! $query) {
+        return;
+        }
+        $qstring = '?' . $query;
+
+        // Get the response
+        $response = $this->httpClient->get($this->get_results . $qstring, ['verify' => FALSE] );
+        $json     = $response->getBody();
+        $data     = json_decode($json);
+        return $data;
+    }
+
+
+    /**
+     * Post Perm Results
+     *
+     */
     public function post_perm_results($data = []) {
     
         //  Send as a form    

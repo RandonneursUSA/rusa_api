@@ -210,15 +210,15 @@ class RusaPermanents {
             $this->perms = $perms;
         }
         
-        if ($query['dist']) {
+        if (isset($query['dist'])) {
             $this->perms = $this->getPermanentsByDistance($query['dist']);
         }
         
-        if ($query['type']) {
+        if (isset($query['type'])) {
             $this->perms = $this->getPermanentsByType($query['type']);
         }
         
-        if ($query['name']) {
+        if (isset($query['name'])) {
             $this->perms = $this->getPermanentsByName($query['name']);
         }
      

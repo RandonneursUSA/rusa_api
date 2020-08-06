@@ -1,8 +1,6 @@
 services:
   rusa.client:
     class: '\Drupal\rusa_api\Client\RusaClient'
-  rusa.results.client:
-    class: '\Drupal\rusa_api\Client\RusaResultsClient'
   rusa.clubs:
     class: '\Drupal\rusa_api\RusaClubs'
   rusa.regions:
