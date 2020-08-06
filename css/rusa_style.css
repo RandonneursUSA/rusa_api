@@ -72,6 +72,10 @@
   text-align: right;
 }
 
+.rusa-view .vbo-table,
+.rusa-view .vbo-table tr,
+.rusa-view .vbo-table th,
+.rusa-view .vbo-table td,
 .rusa-table table,
 .rusa-table tr,
 .rusa-table th,
@@ -149,6 +153,10 @@
 .rusa-em {
     font-style: italic;
     color: #c01700;
+}
+
+.rusa-header-row {
+    background-color: #eee;
 }
 
 
