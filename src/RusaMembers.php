@@ -116,6 +116,16 @@ class RusaMembers {
     return !empty($this->members[$mid]->titles);
   }
 
+  /**
+   * Check email
+   *
+   */
+  public function hasEmail($mid) {
+    return !empty($this->members[$mid]->email);
+  }
+
+
+
 } // End of class
 
 
