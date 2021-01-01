@@ -95,25 +95,26 @@ class RusaMembers {
    * Check for valid ID
    *
    */
-  public function isValid($mid) {
-    return !empty($this->members[$mid]);
+   public function isValid($mid) {
+        return !empty($this->members[$mid]);
   }
 
    /**
     * Check for expired ID
     *
     */
-   public function isExpired($mid) {
-     $member = $this->members[$mid];
-     return date("Y-m-d") > $member->expdate;
+    public function isExpired($mid) {
+        $member = $this->members[$mid];
+        $expdate = str_replace('/', '-', $member->expdate);
+        return date("Y-m-d") > $expdate;
    }
 
   /**
    * Check for volunteer
    *
    */
-  public function isVolunteer($mid) {
-    return !empty($this->members[$mid]->titles);
+   public function isVolunteer($mid) {
+        return !empty($this->members[$mid]->titles);
   }
 
   /**
@@ -121,7 +122,7 @@ class RusaMembers {
    *
    */
   public function hasEmail($mid) {
-    return !empty($this->members[$mid]->email);
+        return !empty($this->members[$mid]->email);
   }
 
 
