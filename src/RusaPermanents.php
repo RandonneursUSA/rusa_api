@@ -138,10 +138,12 @@ class RusaPermanents {
     foreach ($perms as $key => $perm) {
       $asort[$key] = $perm->startstate;
       $bsort[$key] = $perm->startcity;
+      $csort[$key] = $perm->dist;
     }
 
     array_multisort($asort, SORT_STRING, SORT_ASC,
                     $bsort, SORT_STRING, SORT_ASC,
+                    $csort, SORT_NUMERIC, SORT_ASC,
                     $perms);
     return $perms;
   }
