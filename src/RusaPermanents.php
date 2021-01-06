@@ -126,6 +126,27 @@ class RusaPermanents {
     return $perms;
   }
 
+
+/**
+   * Get perms sorted by location and distance
+   *
+   */
+  public function getPermanentsSortedByLocation() {
+    $perms = $this->perms;
+
+    // Sort by State and then start location
+    foreach ($perms as $key => $perm) {
+      $asort[$key] = $perm->startstate;
+      $bsort[$key] = $perm->startcity;
+    }
+
+    array_multisort($asort, SORT_STRING, SORT_ASC,
+                    $bsort, SORT_STRING, SORT_ASC,
+                    $perms);
+    return $perms;
+  }
+
+
   /**
    * Get perms by owner
    *
@@ -224,7 +245,7 @@ class RusaPermanents {
             $this->perms = $this->getPermanentsByName($query['name']);
         }
      
-        return $this->getPermanentsSorted();
+        return $this->getPermanentsSortedByLocation();
     }
 
 
