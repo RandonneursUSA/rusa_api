@@ -21,3 +21,11 @@ rusa_clubs:
     _access: 'TRUE'
 rusa_home:
   path: '/'
+
+rusa_api.rusa_api_settings:
+  path: '/admin/config/system/rusa-api-settings'
+  defaults:
+    _title: 'RUSA api settings'
+    _form: 'Drupal\rusa_api\Form\RusaApiSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

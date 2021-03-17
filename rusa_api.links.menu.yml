@@ -1,0 +1,5 @@
+rusa_api.rusa_api_settings:
+  title: RUSA api settings
+  parent: system.admin_config_system
+  route_name: rusa_api.rusa_api_settings
+  weight: 10
