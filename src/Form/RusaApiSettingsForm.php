@@ -28,11 +28,17 @@ class RusaApiSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['example'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Example'),
-      '#default_value' => $this->config('rusa_api.settings')->get('example'),
-    ];
+   
+	$config = $this->config('rusa_api.settings');
+   
+   
+	// RUSA API Key
+	$form['api_key'] = [
+		'#type' => 'key_select',
+		'#title' => $this->t('RUSA API Key'),
+		'#default_value' => $config->get('api_key'),
+	];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -40,8 +46,9 @@ class RusaApiSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    if ($form_state->getValue('example') != 'example') {
-      $form_state->setErrorByName('example', $this->t('The value is not correct.'));
+    
+    if ($form_state->getValue('api_key') === '') {
+      $form_state->setErrorByName('api_key', $this->t('The value is not correct.'));
     }
     parent::validateForm($form, $form_state);
   }
@@ -51,7 +58,7 @@ class RusaApiSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('rusa_api.settings')
-      ->set('example', $form_state->getValue('example'))
+      ->set('api_key', $form_state->getValue('api_key'))
       ->save();
     parent::submitForm($form, $form_state);
   }

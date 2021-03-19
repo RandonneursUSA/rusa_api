@@ -1,20 +1,29 @@
 <?php
 
 namespace Drupal\rusa_api\Client;
+use Drupal\key\KeyRepositoryInterface;
 
 class RusaClient {
     /**
      */
     protected $httpClient;
     protected $base_uri;
+    protected $keyRepository;
+    protected $key_value;
 
     /**
      * Constructor.
      */
     public function __construct() {
+        
         $this->httpClient = \Drupal::httpClient();
         $host = \Drupal::request()->getHost();
-
+        
+        // Get our API Key
+        $api_key = \Drupal::config('rusa_api.settings')->get('api_key');      
+		$this->key_value = \Drupal::service('key.repository')->getKey($api_key)->getKeyValue();
+		
+	
         $this->get_uri     = 'https://' . $host . '/cgi-bin/gdbm2json.pl';
         $this->put_uri     = 'https://' . $host . '/cgi-bin/post_routes.pl';
         $this->results_uri = 'https://' . $host . '/cgi-bin/resultsubmit4_PF.pl';
@@ -33,6 +42,10 @@ class RusaClient {
         if (isset($query['dbname'])) {
             $qstring = '?' . $query['dbname'];
         }
+        
+        // Add the api_key
+        $qstring .= "&apikey=" . $this->key_value;
+               
         if (isset($query['key']) && isset($query['val'])) {
             $qstring .= "&" . $query['key'] . "=" . $query['val'];
         }
@@ -109,5 +122,6 @@ class RusaClient {
         ]);
         return json_decode($request->getBody());
     }
+
 
 } //End of Class
