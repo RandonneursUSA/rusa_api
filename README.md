@@ -1,6 +1,8 @@
 Custom Drupal module for rusa.org
 Author: Paul Lieberman
 
+Moved to github/RandonneursUSA May 3, 2022 - PL - MFT
+
 This module includes classes and methods used by all of the other rusa/ modules, mainly for database interaction. The Client classes currently use the GDBM2JSON gateway to get data from the GDBM files. In theory these could just be swapped for classes that use the entity API once the data is in Drupal, and none of the others would have to change.
 
 Classes
