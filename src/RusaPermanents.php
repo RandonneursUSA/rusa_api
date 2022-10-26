@@ -79,8 +79,8 @@ class RusaPermanents {
     $dist_range = [100 => 199, 200 => 299, 300 => 399, 400 => 599, 600 => 40000];
     $results = [];
     foreach ($this->perms as $pid => $perm) {
-      // in unlikely case $dist_range[$dist] does not exist, compare to $dist instead to avoid error
-      if ($perm->dist >= $dist && $perm->dist <= ($dist_range[$dist] ?? $dist)) {
+      // in unlikely case $dist_range[$dist] does not exist, compare to $dist+99 instead to avoid error
+      if ($perm->dist >= $dist && $perm->dist <= ($dist_range[$dist] ?? ($dist+99))) {
         $results[$pid] = $perm;
       }
     }
