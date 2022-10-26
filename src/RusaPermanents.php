@@ -75,9 +75,12 @@ class RusaPermanents {
    * Filter in 100km increments
    */
   public function getPermanentsByDistance($dist){
+    // using the same distance ranges as in the Perl perm search page
+    $dist_range = [100 => 199, 200 => 299, 300 => 399, 400 => 599, 600 => 40000];
     $results = [];
     foreach ($this->perms as $pid => $perm) {
-      if ($perm->dist >= $dist && $perm->dist <= $dist + 99 ) {
+      // in unlikely case $dist_range[$dist] does not exist, compare to $dist instead to avoid error
+      if ($perm->dist >= $dist && $perm->dist <= ($dist_range[$dist] ?? $dist)) {
         $results[$pid] = $perm;
       }
     }
