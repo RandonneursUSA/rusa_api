@@ -1,23 +1,2 @@
-rusa_regions:
-  path: '/rusa/api/regions'
-  defaults:
-    _title: 'Query regions'
-    _form: '\Drupal\rusa_api\Form\RusaRegionsForm'
-  requirements:
-    _access: 'TRUE'
-rusa_members:
-  path: '/rusa/api/members'
-  defaults:
-    _title: 'Query members'
-    _form: '\Drupal\rusa_api\Form\RusaMembersForm'
-  requirements:
-    _access: 'TRUE'
-rusa_clubs:
-  path: '/rusa/api/clubs/{acpcode}'
-  defaults:
-    _title: 'Query clubs'
-    _form: '\Drupal\rusa_api\Form\RusaClubsForm'
-  requirements:
-    _access: 'TRUE'
 rusa_home:
   path: '/'
