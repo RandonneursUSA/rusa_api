@@ -2,11 +2,18 @@
 
 namespace Drupal\rusa_api\Client;
 
+/**
+ * The RusaClient class provides the http interface between Drupal and the Perl backend
+ *
+ */
 class RusaClient {
-    /**
-     */
-    protected $httpClient;
-    protected $base_uri;
+  
+    protected $httpClient; 
+    protected $get_uri;
+    protected $put_uri;
+    protected $results_uri;
+    protected $pay_uri;
+    protected $get_results;
 
     /**
      * Constructor.

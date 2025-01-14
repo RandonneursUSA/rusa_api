@@ -69,7 +69,7 @@ class RusaMembersForm extends FormBase {
             $member->sname,
             $member->mid,
             Link::fromTextAndUrl($member->clubacp,
-              Url::fromRoute(rusa_clubs, array('acpcode' => $member->clubacp))),
+              Url::fromRoute('rusa_clubs', array('acpcode' => $member->clubacp))),
             $member->city,
             $member->state,
           ];
