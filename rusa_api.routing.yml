@@ -9,12 +9,12 @@ put_uri:
     _access: 'TRUE'
 
 results_uri:
-  path: '/cgi-bin/resultsubmit4_PF.pl';
+  path: '/cgi-bin/resultsubmit4_PF.pl'
   requirements:
     _access: 'TRUE'
 
 pay_uri:
-  path: '/cgi-bin/perm_pay.pl';
+  path: '/cgi-bin/perm_pay.pl'
   requirements:
     _access: 'TRUE'
 
