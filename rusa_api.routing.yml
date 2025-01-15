@@ -1,2 +1,29 @@
+get_uri:
+  path: '/cgi-bin/gdbm2json.pl'
+  requirements:
+    _access: 'TRUE'
+
+put_uri:
+  path: '/cgi-bin/post_routes.pl'
+  requirements:
+    _access: 'TRUE'
+
+results_uri:
+  path: '/cgi-bin/resultsubmit4_PF.pl';
+  requirements:
+    _access: 'TRUE'
+
+pay_uri:
+  path: '/cgi-bin/perm_pay.pl';
+  requirements:
+    _access: 'TRUE'
+
+get_results:
+  path: '/cgi-bin/results2json.pl'
+  requirements:
+    _access: 'TRUE'
+
 rusa_home:
   path: '/'
+  requirements:
+    _access: 'TRUE'

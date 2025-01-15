@@ -2,6 +2,9 @@
 
 namespace Drupal\rusa_api\Client;
 
+use Drupal\Core\Url;
+
+
 /**
  * The RusaClient class provides the http interface between Drupal and the Perl backend
  *
@@ -17,16 +20,20 @@ class RusaClient {
 
     /**
      * Constructor.
+     * - Instantiate client
+     * - Get host
+     * - Set paths from routes
+     *
      */
     public function __construct() {
         $this->httpClient = \Drupal::httpClient();
         $host = \Drupal::request()->getHost();
 
-        $this->get_uri     = 'https://' . $host . '/cgi-bin/gdbm2json.pl';
-        $this->put_uri     = 'https://' . $host . '/cgi-bin/post_routes.pl';
-        $this->results_uri = 'https://' . $host . '/cgi-bin/resultsubmit4_PF.pl';
-        $this->pay_uri     = 'https://' . $host . '/cgi-bin/perm_pay.pl';
-        $this->get_results = 'https://' . $host . '/cgi-bin/results2json.pl';
+        $this->get_uri     = 'https://' . $host . Url::fromRoute('get_uri')->toString();
+        $this->put_uri     = 'https://' . $host . Url::fromRoute('put_uri')->toString();
+        $this->results_uri = 'https://' . $host . Url::fromRoute('results_uri')->toString();
+        $this->pay_uri     = 'https://' . $host . Url::fromRoute('pay_uri')->toString();
+        $this->get_results = 'https://' . $host . Url::fromRoute('get_results')->toString();
     }
 
     /**
