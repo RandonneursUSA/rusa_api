@@ -5,7 +5,19 @@ Moved to github/RandonneursUSA May 3, 2022 - PL - MFT
 
 This module includes classes and methods used by all of the other rusa/ modules, mainly for database interaction. The Client classes currently use the GDBM2JSON gateway to get data from the GDBM files. In theory these could just be swapped for classes that use the entity API once the data is in Drupal, and none of the others would have to change.
 
-Classes
+## Requirements
+Perl CGI modules
+gdbm2json.pl
+post_routes.pl
+results2json.pl
+
+## Permisions
+Defines a long list of permissions that corespond to the backend capabilities table
+
+## CSS and JS
+These should be moved to a new custom theme
+
+## Classes
 --------------------
 
 RusaApiForm     - Early development work, can be deleted
@@ -24,10 +36,6 @@ RusaStates      - Methods to get states data
 
 Client/RusaClient        - The main interface to the GDBM data
 Client/RusaResultsClient - Results needed a special case because they are so convoluted
-
-Form/RusaClubsForm   - Query form. Not really part of the API and not being used.
-Form/RusaMembersForm - Query form. Not really part of the API and not being used.
-Form/RusaRegionsForm - Query form. Not really part of the API and not being used.
 
 
 Plugin/rest/resource/RusaApiResource - Early attempt at defining a REST resource. Not yet ready for prime time.
