@@ -1,6 +1,5 @@
 name: rusa_api
 type: module
 description: RUSA API
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 package: RUSA
-version: 8.x-0.2.0
