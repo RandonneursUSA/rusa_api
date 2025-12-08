@@ -120,6 +120,9 @@ class RusaPermanents {
       $bsort[$key] = $perm->pid;;
     }
 
+    if (!is_array($asort)) {
+      return [];
+    }
     array_multisort($asort, SORT_NUMERIC, SORT_ASC,
                     $bsort, SORT_NUMERIC, SORT_ASC,
                     $perms);
@@ -141,6 +144,9 @@ class RusaPermanents {
       $csort[$key] = $perm->dist;
     }
 
+    if (!is_array($asort)) {
+      return [];
+    }
     array_multisort($asort, SORT_STRING, SORT_ASC,
                     $bsort, SORT_STRING, SORT_ASC,
                     $csort, SORT_NUMERIC, SORT_ASC,
