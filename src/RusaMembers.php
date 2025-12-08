@@ -35,8 +35,9 @@ class RusaMembers {
     // Get the data
     $data = $this->client->get($query);
 
-    // Store keyed on acpcode
+    // Store keyed on RUSA ID.
     foreach ($data as $member) {
+      $member->titles = []; // Bug 1159. Don't allow this to be null.
       $this->members[$member->mid] = $member;
     }
 
@@ -59,7 +60,7 @@ class RusaMembers {
       $this->titles[$title->tid] = $title;
     }
 
-    // Add tittles to members
+    // Add titles to members
     foreach ($this->members as $mid => $member) {
       foreach ($this->titles as $tid => $title) {
         if (in_array($mid, $title->midlist)) {

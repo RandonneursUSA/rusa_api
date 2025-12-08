@@ -33,7 +33,9 @@ class RusaOfficials {
 
     $this->client = new RusaClient();
     $data   = $this->client->get($query);
+    $this->titles = [];
     foreach ($data as $official) {
+      $official->titles = []; // Bug 1159.
       $this->officials[$official->mid] = $official;
     }
   }
@@ -47,7 +49,7 @@ class RusaOfficials {
       $this->titles[$title->tid] = $title;
     }
 
-    // Add tittles to offical
+    // Add titles to offical
     foreach ($this->officials as $mid => $official) {
       foreach ($this->titles as $tid => $title) {
         if (in_array($mid, $title->midlist)) {
