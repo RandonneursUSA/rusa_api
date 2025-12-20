@@ -91,6 +91,32 @@ class RusaPermanents {
   }
 
   /**
+   * Get Permanents by minimum unpaved distance
+   */
+  public function getPermanentsByMinUnpavedDistance($min_dist_unpaved) {
+    $results = [];
+    foreach ($this->perms as $pid => $perm) {
+      if ($perm->dist_unpaved >= $min_dist_unpaved) {
+        $results[$pid] = $perm;
+      }
+    }
+    return $results;
+  }
+
+  /**
+   * Get Permanents by minimum climbing
+   */
+  public function getPermanentsByMinClimbing($min_climbing) {
+    $results = [];
+    foreach ($this->perms as $pid => $perm) {
+      if ($perm->climbing >= $min_climbing) {
+        $results[$pid] = $perm;
+      }
+    }
+    return $results;
+  }
+
+  /**
    * Get single Permanent distance
    *
    */
@@ -232,11 +258,9 @@ class RusaPermanents {
      *
      */
     public function getPermanentsQuery($query) {
-    
         if ($query['active']) {
             $this->perms = $this->getActivePermanents();
         }
-        
         if ($query['nosr']) {        
             // Remove SR600s
             foreach ($this->perms as $pid => $perm) {
@@ -246,23 +270,22 @@ class RusaPermanents {
             }
             $this->perms = $perms;
         }
-        
         if (isset($query['dist'])) {
             $this->perms = $this->getPermanentsByDistance($query['dist']);
         }
-        
+        if (isset($query['min_dist_unpaved'])) {
+            $this->perms = $this->getPermanentsByMinUnpavedDistance($query['min_dist_unpaved']);
+        }
+        if (isset($query['min_climbing'])) {
+            $this->perms = $this->getPermanentsByMinClimbing($query['min_climbing']);
+        }
         if (isset($query['type'])) {
             $this->perms = $this->getPermanentsByType($query['type']);
         }
-        
         if (isset($query['name'])) {
             $this->perms = $this->getPermanentsByName($query['name']);
         }
-     
         return $this->getPermanentsSortedByLocation();
     }
-
-
-
 
 } // End of class
