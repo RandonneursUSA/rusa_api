@@ -72,12 +72,18 @@ class RusaPermanents {
 
  /** Get Permanents by distance
    *
-   * Filter in 100km increments
+   * Filter in 100km increments except for a few cases.
    */
   public function getPermanentsByDistance($dist){
     $results = [];
+    $upper_bound = $dist + 99;
+    if ($dist == 400) {
+      $upper_bound = 599;
+    } elseif ($dist == 600) {
+      $upper_bound = 999999;
+    }
     foreach ($this->perms as $pid => $perm) {
-      if ($perm->dist >= $dist && $perm->dist <= $dist + 99 ) {
+      if ($perm->dist >= $dist && $perm->dist <= $upper_bound) {
         $results[$pid] = $perm;
       }
     }
