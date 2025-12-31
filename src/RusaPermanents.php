@@ -29,20 +29,19 @@ class RusaPermanents {
     }
 
     // Get perms from gdbm
-    $client    = new RusaClient();
-    $db_perms =  $client->get($query);
+    $client = new RusaClient();
+    $db_perms = $client->get($query);
 
     foreach ($db_perms as $perm) {
       $this->perms[$perm->pid] = $perm;
-    }  
-
+    }
   }
 
   /**
    * Get all Permanents
    *
    */
-  public function getPermanents(){
+  public function getPermanents() {
     return $this->perms;
   }
 
@@ -50,7 +49,7 @@ class RusaPermanents {
    * Get active Permanents
    *
    */
-  public function getActivePermanents(){
+  public function getActivePermanents() {
     $perms = [];
     foreach ($this->perms as $pid => $perm) {
       if ($perm->status == '1') {
@@ -65,21 +64,21 @@ class RusaPermanents {
    * Get single Permanent by id
    *
    */
-  public function getPermanent($pid){
+  public function getPermanent($pid) {
     return $this->perms[$pid];
   }
 
-
- /** Get Permanents by distance
+  /** Get Permanents by distance
    *
    * Filter in 100km increments except for a few cases.
    */
-  public function getPermanentsByDistance($dist){
+  public function getPermanentsByDistance($dist) {
     $results = [];
     $upper_bound = $dist + 99;
     if ($dist == 400) {
       $upper_bound = 599;
-    } elseif ($dist == 600) {
+    }
+    elseif ($dist == 600) {
       $upper_bound = 999999;
     }
     foreach ($this->perms as $pid => $perm) {
@@ -120,7 +119,7 @@ class RusaPermanents {
    * Get single Permanent distance
    *
    */
-  public function getPermanentDistance($pid){
+  public function getPermanentDistance($pid) {
     return $this->perms[$pid]->dist;
   }
 
@@ -134,8 +133,8 @@ class RusaPermanents {
     $perm = $this->perms[$pid];
 
     $perm_name = empty($perm->name) ? "Unnamed perm" : $perm->name;
-    $perm_line = "Permanent: " .  $pid .  " (" . $perm->dist . "km) " .  "\"" . $perm_name . "\"  " .  $perm->start;
-   
+    $perm_line = "Permanent: " . $pid . " (" . $perm->dist . "km) " . "\"" . $perm_name . "\"  " . $perm->start;
+
     return $perm_line;
   }
 
@@ -149,20 +148,19 @@ class RusaPermanents {
     // Sort by distance and then perm id
     foreach ($perms as $key => $perm) {
       $asort[$key] = $perm->dist;
-      $bsort[$key] = $perm->pid;;
+      $bsort[$key] = $perm->pid;
     }
 
     if (!is_array($asort)) {
       return [];
     }
     array_multisort($asort, SORT_NUMERIC, SORT_ASC,
-                    $bsort, SORT_NUMERIC, SORT_ASC,
-                    $perms);
+      $bsort, SORT_NUMERIC, SORT_ASC,
+      $perms);
     return $perms;
   }
 
-
-/**
+  /**
    * Get perms sorted by location and distance
    *
    */
@@ -180,12 +178,11 @@ class RusaPermanents {
       return [];
     }
     array_multisort($asort, SORT_STRING, SORT_ASC,
-                    $bsort, SORT_STRING, SORT_ASC,
-                    $csort, SORT_NUMERIC, SORT_ASC,
-                    $perms);
+      $bsort, SORT_STRING, SORT_ASC,
+      $csort, SORT_NUMERIC, SORT_ASC,
+      $perms);
     return $perms;
   }
-
 
   /**
    * Get perms by owner
@@ -200,92 +197,91 @@ class RusaPermanents {
     }
     return $perms;
   }
-  
-    /**
-     * Is perm inactive
-     *
-     */
-    public function isInactive($pid){
-        $perm = $this->perms[$pid];
-        return ! ($perm->status === '1');   
-   }
 
-    /**
-     * Is perm an SR
-     *
-     */
-    public function isSr($pid){
-        $perm = $this->perms[$pid];
-        return ($perm->superrand === '1');   
-   }
+  /**
+   * Is perm inactive
+   *
+   */
+  public function isInactive($pid) {
+    $perm = $this->perms[$pid];
+    return !($perm->status === '1');
+  }
 
-    /**
-     * Get Perms by type
-     *
-     */
-    public function getPermanentsByType($type) {
-        if (in_array($type, ['LOOP', 'OB', 'PP'])) {
-            $perms = [];
-            foreach ($this->perms as $pid => $perm) {
-                if ($perm->type == $type) {
-                    $perms[$pid] = $perm;
-                }
-            }
-            return $perms;
+  /**
+   * Is perm an SR
+   *
+   */
+  public function isSr($pid) {
+    $perm = $this->perms[$pid];
+    return ($perm->superrand === '1');
+  }
+
+  /**
+   * Get Perms by type
+   *
+   */
+  public function getPermanentsByType($type) {
+    if (in_array($type, ['LOOP', 'OB', 'PP'])) {
+      $perms = [];
+      foreach ($this->perms as $pid => $perm) {
+        if ($perm->type == $type) {
+          $perms[$pid] = $perm;
         }
+      }
+      return $perms;
     }
+  }
 
+  /**
+   * Get Perms by name
+   *
+   */
+  public function getPermanentsByName($name) {
+    if (!empty($name)) {
+      $perms = [];
+      foreach ($this->perms as $pid => $perm) {
+        if (stripos($perm->name, $name) !== FALSE) {
+          $perms[$pid] = $perm;
+        }
+      }
+      return $perms;
+    }
+  }
 
-    /**
-     * Get Perms by name
-     *
-     */
-    public function getPermanentsByName($name) {
-        if (! empty($name)) {
-            $perms = [];
-            foreach ($this->perms as $pid => $perm) {
-                if (stripos($perm->name, $name) !== FALSE) {             
-                    $perms[$pid] = $perm;
-                }
-            }
-            return $perms;
-        }
+  /**
+   * Get permanents query
+   *
+   */
+  public function getPermanentsQuery($query) {
+    if ($query['active']) {
+      $this->perms = $this->getActivePermanents();
     }
-    
-    
-    /**
-     * Get permanents query
-     *
-     */
-    public function getPermanentsQuery($query) {
-        if ($query['active']) {
-            $this->perms = $this->getActivePermanents();
+    if ($query['nosr']) {
+      // Remove SR600s
+      foreach ($this->perms as $pid => $perm) {
+        if ($perm->superrand != '1') {
+          $perms[$pid] = $perm;
         }
-        if ($query['nosr']) {        
-            // Remove SR600s
-            foreach ($this->perms as $pid => $perm) {
-                if ($perm->superrand != '1') {
-                    $perms[$pid] = $perm;
-                }
-            }
-            $this->perms = $perms;
-        }
-        if (isset($query['dist'])) {
-            $this->perms = $this->getPermanentsByDistance($query['dist']);
-        }
-        if (isset($query['min_dist_unpaved'])) {
-            $this->perms = $this->getPermanentsByMinUnpavedDistance($query['min_dist_unpaved']);
-        }
-        if (isset($query['min_climbing'])) {
-            $this->perms = $this->getPermanentsByMinClimbing($query['min_climbing']);
-        }
-        if (isset($query['type'])) {
-            $this->perms = $this->getPermanentsByType($query['type']);
-        }
-        if (isset($query['name'])) {
-            $this->perms = $this->getPermanentsByName($query['name']);
-        }
-        return $this->getPermanentsSortedByLocation();
+      }
+      $this->perms = $perms;
     }
+    if (isset($query['dist'])) {
+      $this->perms = $this->getPermanentsByDistance($query['dist']);
+    }
+    if (isset($query['min_dist_unpaved'])) {
+      $this->perms = $this->getPermanentsByMinUnpavedDistance($query['min_dist_unpaved']);
+    }
+    if (isset($query['min_climbing'])) {
+      $this->perms = $this->getPermanentsByMinClimbing($query['min_climbing']);
+    }
+    if (isset($query['type'])) {
+      $this->perms = $this->getPermanentsByType($query['type']);
+    }
+    if (isset($query['name'])) {
+      $this->perms = $this->getPermanentsByName($query['name']);
+    }
+    return $this->getPermanentsSortedByLocation();
+  }
 
 } // End of class
+
