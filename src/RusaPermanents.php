@@ -146,12 +146,14 @@ class RusaPermanents {
     $perms = $this->perms;
 
     // Sort by distance and then perm id
+    $asort = [];
+    $bsort = [];
     foreach ($perms as $key => $perm) {
       $asort[$key] = $perm->dist;
       $bsort[$key] = $perm->pid;
     }
 
-    if (!is_array($asort)) {
+    if (count($asort) == 0) {
       return [];
     }
     array_multisort($asort, SORT_NUMERIC, SORT_ASC,
@@ -168,13 +170,16 @@ class RusaPermanents {
     $perms = $this->perms;
 
     // Sort by State and then start location
+    $asort = [];
+    $bsort = [];
+    $csort = [];
     foreach ($perms as $key => $perm) {
       $asort[$key] = $perm->startstate;
       $bsort[$key] = $perm->startcity;
       $csort[$key] = $perm->dist;
     }
 
-    if (!is_array($asort)) {
+    if (count($asort) == 0) {
       return [];
     }
     array_multisort($asort, SORT_STRING, SORT_ASC,
